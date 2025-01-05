@@ -6,11 +6,11 @@ import '../../core/constants/app_colors.dart';
 class LoadingDialog {
   static void show({String message = "Please wait..."}) {
     Get.dialog(
-      WillPopScope(
-        onWillPop: () async => false, // Prevent closing dialog on back button
+      PopScope(
+        canPop: false,
         child: Center(
           child: Container(
-            width: 100,
+            width: 150,
             height: 100,
             padding: EdgeInsets.all(16.0),
             decoration: BoxDecoration(

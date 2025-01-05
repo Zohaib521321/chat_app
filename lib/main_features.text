@@ -1,17 +1,28 @@
 Application Main Features using Flutter and firebase
 
 ---Clean Folder Structure
+
 ---Component-Wise Development
+
 Authentication Screen (UI + Functionality)
+
 User Chat Screen Features
+
 --Search Chat
+
 --Send and Receive Messages
+
 --Seen/Unseen Status
---Unseen Count Badge --> 1 unseen message then we will display a badge of 1 otherwise if 2 then we will displlay 2 unseen
+
+--Unseen Count Badge --> 1 unseen message then we will display a badge of 1 otherwise if 2 then we will display 2 unseen
+
  --Sent, Delivered, and Online Indicators --> single tick for sent , double tick but color is grey its indicate delivered and if we
 
 --Online Status and Last Active Timestamp
+
 --Notification Feature
+
 User Profile Screen
+
 --Includes Name, Email, Bio, and Profile Image
 

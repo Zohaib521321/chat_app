@@ -40,7 +40,11 @@ class ForgotPasswordView extends StatelessWidget {
                 hintText: "Email",
                 controller: authController.emailController,
               ),
-              CustomButton(title: "Send email", onTap: () {})
+              CustomButton(
+                  title: "Send email",
+                  onTap: () {
+                    authController.sendEmail();
+                  })
             ],
           ),
         ),

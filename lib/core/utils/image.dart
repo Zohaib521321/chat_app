@@ -1,11 +1,13 @@
 import 'dart:io';
 
 import 'package:chat_app/core/utils/short_message.dart';
-// import 'package:firebase_storage/firebase_storage.dart' as storage;
+import 'package:firebase_storage/firebase_storage.dart' as storage;
 import 'package:flutter_image_compress/flutter_image_compress.dart';
 import 'package:get/get.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:path/path.dart' as path;
+
+import 'error.dart';
 
 /// Utility class for image-related operations such as compression and uploading.
 class ImageUtil {
@@ -46,36 +48,33 @@ class ImageUtil {
   /// Takes the [filePath] of the image file and the user's [phoneNumber].
   /// Returns a [String] representing the download URL of the uploaded image.
 
-  // static Future<String> uploadToDatabase(
-  //     String filePath, String phoneNumber)
-  // async {
-  //   try {
-  //     String uniqueId = DateTime.now().millisecondsSinceEpoch.toString();
-  //     File pickedImage = File(filePath);
-  //
-  //     if (pickedImage.existsSync()) {
-  //       storage.Reference reference = storage.FirebaseStorage.instance
-  //           .ref()
-  //           .child("Profile Image/$uniqueId");
-  //
-  //       // Start the upload task
-  //       storage.UploadTask uploadTask = reference.putFile(pickedImage);
-  //
-  //       // Await for upload to complete
-  //       await uploadTask.whenComplete(() => null);
-  //
-  //       // After upload is complete, retrieve the download URL
-  //       final downloadUrl = await reference.getDownloadURL();
-  //       return downloadUrl;
-  //     } else {
-  //       throw Exception('File does not exist at the provided path');
-  //     }
-  //   } catch (e) {
-  //     // Handle database errors
-  //     ErrorUtil.handleDatabaseErrors(e);
-  //     rethrow;
-  //   }
-  // }
+  static Future<String> uploadToDatabase(String filePath) async {
+    try {
+      String uniqueId = DateTime.now().millisecondsSinceEpoch.toString();
+      File pickedImage = File(filePath);
+
+      if (pickedImage.existsSync()) {
+        storage.Reference reference = storage.FirebaseStorage.instance
+            .ref()
+            .child("Profile Image/$uniqueId");
+
+        // Start the upload task
+        storage.UploadTask uploadTask = reference.putFile(pickedImage);
+
+        // Await for upload to complete
+        await uploadTask.whenComplete(() => null);
+
+        // After upload is complete, retrieve the download URL
+        final downloadUrl = await reference.getDownloadURL();
+        return downloadUrl;
+      } else {
+        throw Exception('File does not exist at the provided path');
+      }
+    } catch (e) {
+      ErrorUtil.handleError(e);
+      rethrow;
+    }
+  }
 
   static Future<void> pickAndUpdateImage(RxString pathToUpdate,
       {ImageSource source = ImageSource.gallery}) async {

@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:chat_app/core/constants/app_colors.dart';
 import 'package:chat_app/core/constants/app_size.dart';
 import 'package:chat_app/presentation/widgets/text/text_widget.dart';
@@ -33,10 +35,16 @@ class LoginView extends StatelessWidget {
                 fontWeight: FontWeight.bold,
               ),
               SizedBox(height: AppSize.h2),
-              CustomTextField(hintText: "Email"),
+              CustomTextField(
+                hintText: "Email",
+                controller: authController.emailController,
+              ),
+
+              //Enter Password here
               Obx(
                 () => CustomTextField(
                   hintText: "Password",
+                  controller: authController.passwordController,
                   isObscure: authController.isObscure.value,
                   suffixIcon: InkWell(
                       onTap: () {
@@ -63,9 +71,13 @@ class LoginView extends StatelessWidget {
                   ),
                 ),
               ),
+
               CustomButton(
                 title: "Login",
-                onTap: () {},
+                onTap: () {
+                  log("Isloading ${authController.isLoading.value}");
+                  authController.logInUser();
+                },
               ),
               CustomRichText(
                 firstPart: "Don’t have an account? ",

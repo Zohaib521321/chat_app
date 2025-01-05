@@ -1,6 +1,7 @@
 import 'dart:io';
 import 'package:chat_app/core/constants/app_colors.dart';
 import 'package:chat_app/core/constants/app_size.dart';
+import 'package:chat_app/core/utils/image.dart';
 import 'package:chat_app/presentation/controllers/auth/auth_controller.dart';
 import 'package:chat_app/presentation/widgets/text/text_widget.dart';
 import 'package:chat_app/presentation/widgets/text_field/custom_text_field.dart';
@@ -30,20 +31,33 @@ class SignupView extends StatelessWidget {
                 SizedBox(
                   height: AppSize.h2,
                 ),
-                TextWidget(title: "Signup"),
-                Obx(() => GestureDetector(
-                      onTap: () {},
-                      child: CircleAvatar(
-                        radius: 30,
-                        backgroundColor: AppColors.primaryColor,
-                        child: authController.imagePath.value != ""
-                            ? Image.file(File(authController.imagePath.value))
-                            : Icon(
-                                Icons.person,
-                                size: 30,
-                              ),
-                      ),
-                    )),
+                TextWidget(
+                  title: "Signup",
+                  fontSize: 24,
+                  fontWeight: FontWeight.bold,
+                ),
+                SizedBox(
+                  height: AppSize.h3,
+                ),
+                // Obx(() => GestureDetector(
+                //       onTap: () {
+                //         ImageUtil.pickAndUpdateImage(authController.imagePath);
+                //       },
+                //       child: CircleAvatar(
+                //         radius: 30,
+                //         backgroundColor: AppColors.primaryColor,
+                //         child: authController.imagePath.value != ""
+                //             ? Image.file(File(authController.imagePath.value))
+                //             : Icon(
+                //                 Icons.person,
+                //                 size: 30,
+                //               ),
+                //       ),
+                //     )),
+                CustomTextField(
+                  hintText: "Name",
+                  controller: authController.nameController,
+                ),
                 CustomTextField(
                   hintText: "Email",
                   controller: authController.emailController,
@@ -71,7 +85,11 @@ class SignupView extends StatelessWidget {
                   minLine: 3,
                   maxLine: 6,
                 ),
-                CustomButton(title: "Signup", onTap: () {}),
+                CustomButton(
+                    title: "Signup",
+                    onTap: () {
+                      authController.registerUser();
+                    }),
                 CustomRichText(
                   firstPart: "Already have an account? ",
                   highlightedPart: "Log In",
