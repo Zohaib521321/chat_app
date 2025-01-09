@@ -5,6 +5,7 @@ import 'package:get/get.dart';
 import '../../core/constants/app_colors.dart';
 
 class LoadingDialog {
+  ///[show] dialogue
   static void show({String message = "Please wait..."}) {
     Get.dialog(
       PopScope(
