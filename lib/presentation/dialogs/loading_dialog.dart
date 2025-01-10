@@ -47,6 +47,7 @@ class LoadingDialog {
     );
   }
 
+  ///[dismiss] dialogue
   static void dismiss() {
     if (Get.isDialogOpen ?? false) {
       Get.back(); // Close the dialog
