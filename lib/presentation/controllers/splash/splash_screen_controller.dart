@@ -1,10 +1,19 @@
 import 'package:chat_app/routes/app_pages.dart';
 import 'package:get/get.dart';
 
+import '../../../core/services/auth_service.dart';
+
 class SplashScreenController extends GetxController {
-  void navigateToNextScreen() {
+  Future<void> navigateToNextScreen() async {
+    String? uid = await AuthService.getCurrentUserId();
     Future.delayed(Duration(seconds: 4), () {
-      Get.offAllNamed(AppPages.login);
+      if (uid != null) {
+        Get.offAllNamed(AppPages.chatScreen);
+
+      }
+      else{
+        Get.offAllNamed(AppPages.login);
+      }
     });
   }
 }

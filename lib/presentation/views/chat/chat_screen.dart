@@ -1,3 +1,6 @@
+import 'dart:developer';
+
+import 'package:chat_app/core/services/auth_service.dart';
 import 'package:chat_app/presentation/widgets/text/text_widget.dart';
 import 'package:flutter/material.dart';
 
@@ -15,7 +18,13 @@ class ChatScreen extends StatelessWidget {
             title: "Chat Will be here",
             fontWeight: FontWeight.bold,
             fontSize: 19,
-          )
+          ),
+          TextButton(
+              onPressed: () async {
+                await AuthService.logoutUser();
+                log("logout successfully done ✅");
+              },
+              child: TextWidget(title: "Logout"))
         ],
       ),
     );

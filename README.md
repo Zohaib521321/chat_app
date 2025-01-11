@@ -5,11 +5,11 @@ This application is built using **Flutter** and **Firebase**, offering a compreh
 
 ### Main Features
 
-#### 📂 Clean Folder Structure
+#### 📂 Clean Folder Structure ✅
 - Organized and scalable folder structure for better maintainability.
 - Component-wise development for modular and reusable code.
 
-#### 🔐 Authentication Screen
+#### 🔐 Authentication Screen ✅
 - User-friendly UI for login and signup.
 - Complete authentication functionality with Firebase integration.
 
