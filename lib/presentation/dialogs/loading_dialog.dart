@@ -1,3 +1,4 @@
+import 'package:chat_app/core/constants/app_size.dart';
 import 'package:chat_app/presentation/widgets/text/text_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -10,8 +11,8 @@ class LoadingDialog {
         canPop: false,
         child: Center(
           child: Container(
-            width: 150,
-            height: 100,
+            width: AppSize.getHeight(15),
+            height: AppSize.getHeight(14),
             padding: EdgeInsets.all(16.0),
             decoration: BoxDecoration(
               color: AppColors.backgroundColor,
